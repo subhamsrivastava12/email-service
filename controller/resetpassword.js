@@ -1,6 +1,13 @@
-const services = require("../services/resetpassword");
+const {sendResetPasswordEmail} = require("../services/resetpassword");
 
 module.exports.resetPassword = (req,res)=>{
-    const data = services.sendResetPasswordEmail(req.body.username,req.body.email,req.body.token);
-    res.json(data);
+    sendResetPasswordEmail(req.body.username,req.body.email,req.body.token)
+    .then((data)=>{
+        res.json(data);
+    })
+    .catch((err)=>{
+        res.status(500).send(err.message);
+    })
+
+    
 }

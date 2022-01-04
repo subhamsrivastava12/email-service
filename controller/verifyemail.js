@@ -1,6 +1,11 @@
-const services = require("../services/verifyemail");
+const {sendConfirmationEmail} = require("../services/verifyemail");
 
 module.exports.verifyEmail = (req,res)=>{
-    const data = services.sendConfirmationEmail(req.body.username,req.body.email,req.body.confirmationCode);
-    res.json(data);
+    sendConfirmationEmail(req.body.username,req.body.email,req.body.confirmationCode)
+    .then((data)=>{
+        res.json(data);
+    })
+    .catch((err)=>{
+        res.status(500).send(err.message);
+    })
 }
