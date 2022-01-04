@@ -13,7 +13,7 @@ const transport = nodemailer.createTransport({
 
 
 
-module.exports.sendConfirmationEmail = (username,email,confirmationCode)=>{
+module.exports.sendConfirmationEmail = async (username,email,confirmationCode)=>{
     console.log("nodemailer sending mail function");
     transport.sendMail({
         from:process.env.USER,

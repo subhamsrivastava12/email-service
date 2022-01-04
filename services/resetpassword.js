@@ -13,7 +13,7 @@ const transport = nodemailer.createTransport({
 
 
 
-module.exports.sendResetPasswordEmail = (username,email,token)=>{
+module.exports.sendResetPasswordEmail = async (username,email,token)=>{
     console.log("nodemailer sending mail function");
     console.log(username,email,token);
     transport.sendMail({

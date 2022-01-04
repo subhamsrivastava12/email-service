@@ -1,6 +1,6 @@
 const {sendConfirmationEmail} = require("../services/verifyemail");
 
-module.exports.verifyEmail = (req,res)=>{
+module.exports.verifyEmail = async (req,res)=>{
     sendConfirmationEmail(req.body.username,req.body.email,req.body.confirmationCode)
     .then((data)=>{
         res.json(data);
