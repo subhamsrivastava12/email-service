@@ -24,7 +24,7 @@ module.exports.sendRequestnotification = async (senderName,email,receiverName)=>
         `<div>
         <h1>Friend Request</h1>
         <h2>Hello ${receiverName}</h2>
-        <p>.${senderName} has sent you the friend request</p>
+        <p>${senderName} has sent you the friend request</p>
         </div>`
     }).catch((err)=>{
         return {message:err.message,status:500,output:false};
