@@ -12,23 +12,22 @@ const transport = nodemailer.createTransport({
 
 
 
-
 module.exports.sendFriendnotification = async (senderName,email,receiverName)=>{
     console.log("nodemailer sending mail function");
     console.log(senderName,receiverName);
     transport.sendMail({
         from:process.env.USER,
         to:email,
-        subject:"Friend request notification",
+        subject:"Friend Request accepted",
         html:
         `<div>
-        <h1>Friend Request</h1>
-        <h2>Hello ${receiverName}</h2>
-        <p>.${senderName} has sent you the friend request</p>
+        <h1>Request accepted</h1>
+        <h2>Hello ${senderName}</h2>
+        <p>.${receiverName} has accepted your friend request</p>
         </div>`
     }).catch((err)=>{
         return {message:err.message,status:500,output:false};
     });
 
-    return {message:"Request notification sent successfully", status:200 ,output:true};
+    return {message:"Acceptance notification sent successfully", status:200 ,output:true};
 };

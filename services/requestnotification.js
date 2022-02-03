@@ -19,16 +19,17 @@ module.exports.sendRequestnotification = async (senderName,email,receiverName)=>
     transport.sendMail({
         from:process.env.USER,
         to:email,
-        subject:"Friend Request accepted",
+        subject:"Friend request notification",
         html:
         `<div>
-        <h1>Request accepted</h1>
-        <h2>Hello ${senderName}</h2>
-        <p>.${receiverName} has accepted your friend request</p>
+        <h1>Friend Request</h1>
+        <h2>Hello ${receiverName}</h2>
+        <p>.${senderName} has sent you the friend request</p>
         </div>`
     }).catch((err)=>{
         return {message:err.message,status:500,output:false};
     });
 
-    return {message:"Acceptance notification sent succesfully", status:200 ,output:true};
+    return {message:"Request notification sent succesfully", status:200 ,output:true};
 };
+
