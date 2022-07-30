@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const transport = nodemailer.createTransport({
-    service:"Gmail",
+    service:'gmail',
     auth:{
         user:process.env.USER,
         pass:process.env.PASS
@@ -15,7 +15,7 @@ const transport = nodemailer.createTransport({
 
 module.exports.sendConfirmationEmail = async (username,email,confirmationCode)=>{
     console.log("nodemailer sending mail function");
-    transport.sendMail({
+    const mail=await transport.sendMail({
         from:process.env.USER,
         to:email,
         subject:"Please confirm your email",
@@ -29,6 +29,6 @@ module.exports.sendConfirmationEmail = async (username,email,confirmationCode)=>
     }).catch((err)=>{
         return {message:err.message,status:500,output:false};
     });
-
+    console.log("mail",mail);
     return {message:"verify your email", status:200,output:true};
 };
